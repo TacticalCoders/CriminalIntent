@@ -11,7 +11,7 @@ class MainActivity : AppCompatActivity() {
         val currentFragment = supportFragmentManager.findFragmentById(R.id.framgent_container)
 
         if(currentFragment == null){
-            val fragment = CrimeFragment()
+            val fragment = CrimeListFragment.newInstacne()
             supportFragmentManager //프래그먼트 트랜잭션은 프래그먼트 리스트에 프래그먼트를 추가, 삭제, 첨부, 분리, 변경하는 데 사용된다.
                 .beginTransaction() //FragmentTransaction의 인스턴스를 생성해 반환한다.
                 .add(R.id.framgent_container, fragment) //컨테이너 뷰ID와 프래그먼트 인스턴스를 매개 변수로 갖는다.
