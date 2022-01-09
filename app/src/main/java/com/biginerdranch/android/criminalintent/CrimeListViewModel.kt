@@ -15,5 +15,5 @@ class CrimeListViewModel : ViewModel() { //데이터를 장기간 저장할 수 
     }*/
 
     private val crimeRepository = CrimeRepository.get()
-    val crimes = crimeRepository.getCrimes()
+    val crimeListLiveData = crimeRepository.getCrimes()
 }
