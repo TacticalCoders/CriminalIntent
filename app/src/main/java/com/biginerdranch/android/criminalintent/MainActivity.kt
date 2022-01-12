@@ -2,8 +2,12 @@ package com.biginerdranch.android.criminalintent
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import java.util.*
 
-class MainActivity : AppCompatActivity() {
+private const val TAG = "MainActivity"
+
+class MainActivity : AppCompatActivity(), CrimeListFragment.Callbacks {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -17,5 +21,14 @@ class MainActivity : AppCompatActivity() {
                 .add(R.id.framgent_container, fragment) //컨테이너 뷰ID와 프래그먼트 인스턴스를 매개 변수로 갖는다.
                 .commit()
         } //런타임 시에 화면을 구성 또는 변경하는 방법의 핵심.
+    }
+
+    override fun onCrimeSelected(crimeId: UUID) {
+        val fragment = CrimeFragment.newInstance(crimeId)
+        supportFragmentManager
+            .beginTransaction()
+            .replace(R.id.framgent_container, fragment)
+            .addToBackStack(null) //백 버튼을 누를 때 해당 트랜잭션이 취소되면서 이전 상태로 복원된다.
+            .commit()
     }
 }
